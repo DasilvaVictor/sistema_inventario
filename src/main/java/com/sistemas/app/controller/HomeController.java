@@ -9,13 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class HomeController {
 
     @GetMapping("/inicio")
-    public String inicio(
-            Authentication authentication,
-            Model model) {
+    public String inicio(Authentication authentication, Model model) {
 
-        model.addAttribute(
-                "usuario",
-                authentication.getName());
+        model.addAttribute("usuario",authentication.getName());
 
         return "inicio";
     }

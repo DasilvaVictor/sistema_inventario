@@ -19,17 +19,13 @@ public class RegistroController {
     @GetMapping("/registro")
     public String mostrarRegistro(Model model) {
 
-        model.addAttribute(
-                "usuario",
-                new UsuarioRequestDTO());
+        model.addAttribute("usuario", new UsuarioRequestDTO());
 
         return "registro";
     }
 
     @PostMapping("/registro")
-    public String registrarUsuario(
-            UsuarioRequestDTO usuario,
-            Model model) {
+    public String registrarUsuario(UsuarioRequestDTO usuario, Model model) {
 
         loginService.createUser(usuario);
 
