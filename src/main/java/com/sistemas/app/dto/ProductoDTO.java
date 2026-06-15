@@ -18,5 +18,6 @@ public class ProductoDTO {
     private String unidad;
     private Integer stock;
     private Long categoriaId;
+    private String categoriaNombre;
 
 }

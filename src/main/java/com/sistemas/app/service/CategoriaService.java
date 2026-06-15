@@ -1,5 +1,6 @@
 package com.sistemas.app.service;
 
+import org.jspecify.annotations.Nullable;
 import org.springframework.stereotype.Service;
 
 import com.sistemas.app.model.Categoria;
@@ -17,6 +18,10 @@ public class CategoriaService implements ICategoriaService {
     public Categoria createCategoria(Categoria newCategoria) {
         Categoria categoriaSaved = categoriaRepo.save(newCategoria);
         return categoriaSaved;
+    }
+
+    public @Nullable Object getAllCategorias() {
+        return categoriaRepo.findAll();
     }
 
 }

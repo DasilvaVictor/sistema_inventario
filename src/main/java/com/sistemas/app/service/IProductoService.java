@@ -2,9 +2,9 @@ package com.sistemas.app.service;
 
 import java.util.List;
 
-import com.sistemas.app.model.Producto;
+import com.sistemas.app.dto.ProductoDTO;
 
 public interface IProductoService {
-    Producto createProducto(Producto producto);
-    List<Producto> getAllProductos();
+    ProductoDTO createProducto(ProductoDTO productoDTO);
+    List<ProductoDTO> getAllProductos();
 }
