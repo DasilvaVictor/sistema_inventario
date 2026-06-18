@@ -11,6 +11,7 @@ public class Mapper {
     public static Usuario toUsuarioEntity(UsuarioRequestDTO obj) {
         return Usuario.builder()
                 .nombre(obj.getNombre())
+                .email(obj.getEmail())
                 .apellido(obj.getApellido())
                 .username(obj.getUsername())
                 .password(obj.getPassword())
