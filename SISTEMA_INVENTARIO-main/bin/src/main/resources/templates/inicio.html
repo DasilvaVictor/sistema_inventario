@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Sistema de Inventario</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+    <!-- Barra superior -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+
+            <span class="navbar-brand">
+                Sistema de Inventario
+            </span>
+
+            <div class="d-flex align-items-center">
+
+                <span class="text-white me-3">
+                    Bienvenido, <strong th:text="${usuario}"></strong>
+                </span>
+
+                <form th:action="@{/logout}" method="post">
+                    <button type="submit" class="btn btn-outline-light btn-sm">
+                        Cerrar sesión
+                    </button>
+                </form>
+
+            </div>
+
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+
+        <!-- Encabezado -->
+        <div class="mb-4">
+            <h2>Gestión de Productos</h2>
+            <p class="text-muted">
+                Administración y control de inventario.
+            </p>
+        </div>
+
+        <!-- Botones de acción -->
+        <div class="d-flex gap-2 mb-3">
+
+            <a th:href="@{/producto/nuevo}" class="btn btn-success">
+                + Nuevo Producto
+            </a>
+
+            <a th:href="@{/categoria/nuevo}" class="btn btn-secondary">
+                + Nueva Categoría
+            </a>
+
+        </div>
+
+        <!-- Mensaje éxito -->
+        <div th:if="${param.success}" class="alert alert-success alert-dismissible fade show">
+
+            Operación realizada correctamente.
+
+            <button type="button" class="btn-close" data-bs-dismiss="alert">
+            </button>
+
+        </div>
+
+        <!-- Tabla -->
+        <div class="card shadow-sm">
+
+            <div class="card-header bg-white">
+                <h5 class="mb-0">Listado de Productos</h5>
+            </div>
+
+            <div class="card-body">
+
+                <table class="table table-hover align-middle">
+
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Código</th>
+                            <th>Nombre</th>
+                            <th>Descripción</th>
+                            <th>Unidad</th>
+                            <th>Stock</th>
+                            <th>Categoría</th>
+                            <th class="text-center">Acciones</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        <tr th:each="producto : ${productos}">
+
+                            <td th:text="${producto.codigoProducto}"></td>
+
+                            <td th:text="${producto.nombre}"></td>
+
+                            <td th:text="${producto.descripcion}"></td>
+
+                            <td th:text="${producto.unidad}"></td>
+
+                            <td>
+                                <span class="badge bg-info" th:text="${producto.stock}">
+                                </span>
+                            </td>
+
+                            <td th:text="${producto.categoriaNombre}"></td>
+
+                            <td class="text-center">
+
+                                <a th:href="@{/producto/editar/{id}(id=${producto.codigoProducto})}"
+                                    class="btn btn-warning btn-sm">
+                                    Editar
+                                </a>
+
+                                <a th:href="@{/producto/eliminar/{id}(id=${producto.codigoProducto})}"
+                                    class="btn btn-danger btn-sm"
+                                    onclick="return confirm('¿Desea eliminar este producto?')">
+                                    Eliminar
+                                </a>
+
+                            </td>
+
+                        </tr>
+
+                        <tr th:if="${#lists.isEmpty(productos)}">
+                            <td colspan="7" class="text-center text-muted">
+                                No existen productos registrados.
+                            </td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

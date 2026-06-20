@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Login</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        /* 🌈 Fondo animado */
+        body {
+            background: linear-gradient(-45deg, #1e3c72, #2a5298, #4facfe, #00c6ff, #0072ff);
+            background-size: 400% 400%;
+            animation: gradientMove 10s ease infinite;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            25% { background-position: 50% 100%; }
+            50% { background-position: 100% 50%; }
+            75% { background-position: 50% 0%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* ✨ Efecto partículas suave */
+        body::before {
+            content: "";
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            background: radial-gradient(circle, rgba(255,255,255,0.08) 10%, transparent 10%);
+            background-size: 50px 50px;
+            animation: moveParticles 20s linear infinite;
+            z-index: 0;
+        }
+
+        @keyframes moveParticles {
+            from { transform: translate(0, 0); }
+            to { transform: translate(50px, 50px); }
+        }
+
+        /* 📦 Card */
+        .login-card {
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Asegura que el contenido esté encima del fondo */
+        .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Toast animación */
+        .toast {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container vh-100 d-flex justify-content-center align-items-center">
+
+    <div class="card login-card shadow-lg p-4" style="width: 100%; max-width: 400px;">
+
+        <h2 class="text-center mb-4">Iniciar Sesión</h2>
+
+        <form th:action="@{/login}" method="post">
+
+            <!-- Usuario -->
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="floatingInput"
+                       placeholder="Ingrese su usuario" name="username" required>
+                <label for="floatingInput">Usuario</label>
+            </div>
+
+            <!-- Contraseña -->
+            <div class="form-floating mb-3">
+                <input type="password" class="form-control" id="floatingPassword"
+                       placeholder="Ingrese su contraseña" name="password" required>
+                <label for="floatingPassword">Contraseña</label>
+            </div>
+
+            <!-- Botón -->
+            <button type="submit" class="btn btn-primary w-100 mb-3">
+                Ingresar
+            </button>
+
+        </form>
+
+        <!-- Registro -->
+        <div class="text-center">
+            <a th:href="@{/registro}" class="text-decoration-none">
+                ¿No tienes cuenta? Regístrate
+            </a>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- TOASTS -->
+<div class="position-fixed top-0 end-0 p-3" style="z-index: 11">
+
+    <!-- Error -->
+    <div id="errorToast" class="toast align-items-center text-bg-danger border-0">
+        <div class="d-flex">
+            <div class="toast-body">
+                ❌ Usuario o contraseña incorrectos
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+        </div>
+    </div>
+
+    <!-- Logout -->
+    <div id="logoutToast" class="toast align-items-center text-bg-success border-0">
+        <div class="d-flex">
+            <div class="toast-body">
+                ✅ Sesión cerrada correctamente
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Toast error -->
+<script th:if="${param.error}">
+    document.addEventListener("DOMContentLoaded", function () {
+        var toast = new bootstrap.Toast(document.getElementById('errorToast'), { delay: 3000 });
+        toast.show();
+    });
+</script>
+
+<!-- Toast logout -->
+<script th:if="${param.logout}">
+    document.addEventListener("DOMContentLoaded", function () {
+        var toast = new bootstrap.Toast(document.getElementById('logoutToast'), { delay: 3000 });
+        toast.show();
+    });
+</script>
+
+</body>
+</html>

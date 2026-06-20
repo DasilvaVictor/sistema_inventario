@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+
+    <div th:fragment="busqueda(actionUrl, placeholder)">
+
+        <div class="row g-2 mb-3">
+
+            <div class="col-md-10">
+
+                <input type="text" name="texto" class="form-control" th:placeholder="${placeholder}" th:attr="
+                        hx-get=${actionUrl},
+                        hx-target='#tabla-productos',
+                        hx-trigger='keyup changed delay:300ms',
+                        hx-swap='outerHTML'">
+
+            </div>
+
+            <div class="col-md-2">
+
+                <a th:href="@{/producto/listar}" class="btn btn-secondary w-100">
+                    Limpiar
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

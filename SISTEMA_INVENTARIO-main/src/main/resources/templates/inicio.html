@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+    <div th:replace="~{components/navbar :: navbar}"></div>
+
+    <div class="container mt-4">
+
+        <div class="mb-4">
+
+            <h2>
+                Bienvenido,
+                <span th:text="${usuario}"></span>
+            </h2>
+
+            <p class="text-muted">
+                Sistema de Inventario Escolar
+            </p>
+
+        </div>
+
+        <div class="row g-4">
+
+            <!-- Productos -->
+            <div class="col-md-3">
+
+                <div class="card shadow-sm h-100">
+
+                    <div class="card-body text-center">
+
+                        <h4>📦</h4>
+
+                        <h5>Productos</h5>
+
+                        <p class="text-muted">
+                            Gestionar productos del inventario.
+                        </p>
+
+                        <a th:href="@{/producto/listar}" class="btn btn-primary">
+                            Ingresar
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Movimientos -->
+            <div class="col-md-3">
+
+                <div class="card shadow-sm h-100">
+
+                    <div class="card-body text-center">
+
+                        <h4>🔄</h4>
+
+                        <h5>Movimientos</h5>
+
+                        <p class="text-muted">
+                            Entradas y salidas de stock.
+                        </p>
+
+                        <a th:href="@{/movimiento/listar}" class="btn btn-info">
+                            Ingresar
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Reportes -->
+            <div class="col-md-3">
+
+                <div class="card shadow-sm h-100">
+
+                    <div class="card-body text-center">
+
+                        <h4>📊</h4>
+
+                        <h5>Reportes</h5>
+
+                        <p class="text-muted">
+                            Consultar información.
+                        </p>
+
+                        <a th:href="@{/reporte/stock}" class="btn btn-success">
+                            Ingresar
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Usuarios -->
+            <div class="col-md-3">
+
+                <div class="card shadow-sm h-100">
+
+                    <div class="card-body text-center">
+
+                    <h4>👤</h4>
+
+                    <h5>Usuarios</h5>
+
+                    <p class="text-muted">
+                        Administrar usuarios del sistema.
+                    </p>
+
+                    <a th:href="@{/usuarios}" class="btn btn-warning">Ingresar</a>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

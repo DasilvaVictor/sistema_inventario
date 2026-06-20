@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Producto</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+    <div class="container mt-5">
+
+        <div class="card shadow">
+
+            <div class="card-header bg-warning">
+                <h3 class="mb-0">
+                    Editar Producto
+                </h3>
+            </div>
+
+            <div class="card-body">
+
+                <form th:action="@{/producto/editar}" th:object="${producto}" method="post">
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+                            Código
+                        </label>
+
+                        <input type="text" class="form-control" th:field="*{codigoProducto}" readonly>
+
+                    </div>
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+                            Nombre
+                        </label>
+
+                        <input type="text" class="form-control" th:field="*{nombre}" required>
+
+                    </div>
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+                            Descripción
+                        </label>
+
+                        <textarea class="form-control" th:field="*{descripcion}">
+                    </textarea>
+
+                    </div>
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+                            Unidad
+                        </label>
+
+                        <input type="text" class="form-control" th:field="*{unidad}" required>
+
+                    </div>
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+                            Categoría
+                        </label>
+
+                        <select class="form-select" th:field="*{categoriaId}" required>
+
+                            <option value="">
+                                Seleccione una categoría
+                            </option>
+
+                            <option th:each="categoria : ${categorias}" th:value="${categoria.id}"
+                                th:text="${categoria.nombre}">
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="d-flex gap-2">
+
+                        <button type="submit" class="btn btn-warning">
+                            Guardar Cambios
+                        </button>
+
+                        <a th:href="@{/inicio}" class="btn btn-secondary">
+                            Cancelar
+                        </a>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

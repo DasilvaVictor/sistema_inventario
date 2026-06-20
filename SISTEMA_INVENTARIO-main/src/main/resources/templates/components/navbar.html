@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+
+    <nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-dark bg-primary">
+
+        <div class="container">
+
+            <span class="navbar-brand">
+                Sistema de Inventario
+            </span>
+
+            <div class="d-flex align-items-center">
+
+                <span class="text-white me-3">
+                    Bienvenido,
+                    <strong th:text="${usuario}"></strong>
+                </span>
+
+                <form th:action="@{/logout}" method="post">
+
+                    <button type="submit" class="btn btn-outline-light btn-sm">
+
+                        Cerrar sesión
+
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+</body>
+
+</html>
