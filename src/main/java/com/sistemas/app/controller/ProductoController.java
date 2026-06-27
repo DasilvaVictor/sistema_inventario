@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sistemas.app.dto.ProductoDTO;
 import com.sistemas.app.service.CategoriaService;
@@ -79,11 +80,13 @@ public class ProductoController {
 
     @GetMapping("/eliminar/{codigoProducto}")
     public String eliminarProducto(
-            @PathVariable String codigoProducto) {
+            @PathVariable String codigoProducto,
+            RedirectAttributes redirectAttributes) {
 
         productoService.deleteProducto(codigoProducto);
 
-        return "redirect:listar?success";
+        redirectAttributes.addFlashAttribute("success", "Producto eliminado correctamente");
+        return "redirect:/producto/listar";
     }
 
     @GetMapping("/buscar")

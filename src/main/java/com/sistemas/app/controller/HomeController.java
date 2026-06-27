@@ -1,8 +1,5 @@
 package com.sistemas.app.controller;
 
-import com.sistemas.app.service.CategoriaService;
-import com.sistemas.app.service.ProductoService;
-
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.security.core.Authentication;
